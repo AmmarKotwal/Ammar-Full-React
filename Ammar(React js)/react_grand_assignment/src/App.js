@@ -30,7 +30,6 @@ import Feedback from './Components/Feedback';
 import Planet from './Components/Planet';
 import Read from './Components/Read';
 import Update from './Components/Update';
-import Delete from './Components/Delete';
 
 
 function App() {
@@ -42,7 +41,7 @@ function App() {
         <Route path="/" element={<Mock />} />
         <Route path="/read" element={<Read />} />
         <Route path="/update" element={<Update />} />
-        <Route path="/delete" element={<Delete />} />
+        {/* <Route path="/delete" element={<Delete />} /> */}
         {/* <Route path="/w" element={<Statework />} />
         <Route path="/state" element={<Statework />} />
         <Route path="/m" element={<MoreState />} />

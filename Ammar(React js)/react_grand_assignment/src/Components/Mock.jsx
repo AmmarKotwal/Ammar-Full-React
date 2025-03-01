@@ -57,7 +57,7 @@ export default function Mock() {
     return (
         <div className="container mt-5">
             <h1 className="text-center text-primary mb-4">Add Record</h1>
-            <div className='card p-4 shadow-lg'>
+            <div className='card p-4 shadow-lg' style={{backgroundColor: '#B0C4DE'}}>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Name</label>
                     <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />

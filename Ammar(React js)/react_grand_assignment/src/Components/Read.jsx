@@ -10,6 +10,16 @@ export default function Read() {
     let [msg, setMsg] = useState("");
     let [isShow, setisShow] = useState(false);
 
+    let [name, setName] = useState('');
+    let [email, setEmail] = useState('');
+    let [salary, setSal] = useState(0);
+    let [pw, setPw] = useState('');
+    let [desg, setDesg] = useState('');
+    let [dep, setDep] = useState('');
+    let [gen, setGen] = useState('');
+    let [id, setId] = useState('');
+
+
 
     useEffect(()=>{
         try {
@@ -66,6 +76,44 @@ export default function Read() {
         }
     }, [isShow])
 
+    function data_call(a,b,c,d,e,f,g,h) {
+        setName(a)
+        setEmail(b)
+        setSal(c)
+        setPw(d)
+        setDesg(e)
+        setDep(f)
+        setGen(g)
+        setId(h) 
+    }
+
+    function update_data() {
+        axios.put(`${url}/${id}`, {
+            name: name,
+            email: email,
+            salary: salary,
+            password: pw,
+            designation: desg,
+            department: dep,
+            gender: gen  
+        }).then (()=>{
+            setfetchdata((old_record)=>old_record.map((a)=>a.id === id ? {...a,
+                name: name,
+                email: email,
+                salary: salary,
+                password: pw,
+                designation: desg,
+                department: dep,
+                gender: gen
+
+            }: a ))
+            setMsg(`${name}'s Data has Been Updated Successfully`)
+            setisShow(true)
+        }).catch((e)=>{
+            console.error(e)
+        })
+    }
+
   return (
     <div>
         <br />
@@ -90,7 +138,7 @@ export default function Read() {
             <br />
             {
     isShow === true && (
-        <p style={{color:"green"}}>{msg}</p>
+        <h5 style={{color:"green"}}>{msg}</h5>
     )}
 <br />
 <div className="row">
@@ -103,7 +151,7 @@ export default function Read() {
 <h3 className="card-title">{a.name}</h3>
 <h6 className="card-subtitle mb-2 text-muted">{a.email}</h6>
 <p className="card-text">{a.salary}</p>
-<button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button onClick={()=>data_call(a.name,a.email,a.salary,a.password,a.designation,a.department,a.gender,a.id)} type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Update
 </button>&nbsp;&nbsp;&nbsp;
 <Link to="" className="card-link">
@@ -117,7 +165,7 @@ export default function Read() {
     }
      {
             txt_data.length===0&&(
-                <p style={{color:"red"}}>No Record Found</p>
+                <h5 style={{color:"red"}}>No Record Found</h5>
             )}
 </div>
 </div>
@@ -132,59 +180,61 @@ export default function Read() {
       <div class="modal-body" style={{backgroundColor: '#B0C4DE'}}>
       <div className='mb-3'>
                     <label className="form-label fw-bold">Name</label>
-                    <input type="text" className="form-control"  />
+                    <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} />
 
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Email</label>
-                    <input type="email" className="form-control" />
+                    <input type="email" className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)} />
                     
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Salary</label>
-                    <input type="number" className="form-control"  />
+                    <input type="number" className="form-control"  value={salary} onChange={(e)=>setSal(e.target.value)} />
                    
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Password</label>
-                    <input type="password" className="form-control" />
+                    <input type="password" className="form-control"value={pw} onChange={(e)=>setPw(e.target.value)} /> 
                    
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Designation</label>
-                    <select className='form-select' >
-                        <option value="">Please select</option>
-                        <option value="Software Engineer">Software Engineer</option>
-                        <option value="HR Manager">HR Manager</option>
-                        <option value="Project Manager">Project Manager</option>
-                        <option value="Janitor">Janitor</option>
+                    <select className='form-select' value={desg} onChange={(e)=>setDesg(e.target.value)}>
+                        <option value="" selected={desg === ""}>Please select</option>
+                        <option value="Software Engineer" selected={desg === "Software Engineer"}>Software Engineer</option>
+                        <option value="HR Manager" selected={desg === "HR Manager"}>HR Manager</option>
+                        <option value="Project Manager" selected={desg === "Project Manager"}>Project Manager</option>
+                        <option value="Janitor" selected={desg === "Janitor"}>Janitor</option>
                     </select>
                    
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Department</label>
-                    <select className='form-select'>
-                        <option value="">Please select</option>
-                        <option value="Labour">Labour</option>
-                        <option value="Developer">Developer</option>
-                        <option value="HR">HR</option>
-                        <option value="Manager">Manager</option>
+                    <select className='form-select'value={dep} onChange={(e)=>setDep(e.target.value)} >
+                        <option value=""  selected={dep === ""}>Please select</option>
+                        <option value="Labour" selected={dep === "Labour"}>Labour</option>
+                        <option value="Developer" selected={dep === "Developer"}>Developer</option>
+                        <option value="HR" selected={dep === "HR"}>HR</option>
+                        <option value="Manager" selected={dep === "Manager"}>Manager</option>
                     </select>
                    
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Gender</label>
                     <div>
-                        <input type="radio" className="form-check-input me-2" name='gender' /> Male
-                        <input type="radio" className="form-check-input mx-2" name='gender' /> Female
-                        <input type="radio" className="form-check-input mx-2" name='gender' /> Custom
+                        <input type="radio" className="form-check-input me-2" name='gender' value="male" onChange={(e)=>setGen(e.target.value)} checked={gen === "male"} /> Male
+                        <input type="radio" className="form-check-input mx-2" name='gender'value="female" onChange={(e)=>setGen(e.target.value)}  checked={gen === "female"}/>  Female
+                        <input type="radio" className="form-check-input mx-2" name='gender' value="custom" onChange={(e)=>setGen(e.target.value)} checked={gen === "custom"} /> Custom
                     </div>
                    
                 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onClick={()=>{update_data();
+            document.querySelector(".close").click()
+        }}>Save changes</button>
       </div>
     </div>
   </div>

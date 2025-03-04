@@ -29,7 +29,7 @@ import Word_Count from './Components/Word_Count';
 import Feedback from './Components/Feedback';
 import Planet from './Components/Planet';
 import Read from './Components/Read';
-import Update from './Components/Update';
+
 
 
 function App() {
@@ -40,7 +40,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Mock />} />
         <Route path="/read" element={<Read />} />
-        <Route path="/update" element={<Update />} />
         {/* <Route path="/delete" element={<Delete />} /> */}
         {/* <Route path="/w" element={<Statework />} />
         <Route path="/state" element={<Statework />} />

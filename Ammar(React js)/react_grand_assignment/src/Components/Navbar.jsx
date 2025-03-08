@@ -12,11 +12,14 @@ export default function Navbar() {
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
-      <li className="nav-item">
+      {/* <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Add Record</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/read">View Record</Link>
+        </li> */}
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/read">Mock Api Test</Link>
         </li>
         {/* <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/update">Update Record</Link>

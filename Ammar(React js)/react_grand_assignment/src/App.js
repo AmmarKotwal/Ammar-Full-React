@@ -29,6 +29,7 @@ import Word_Count from './Components/Word_Count';
 import Feedback from './Components/Feedback';
 import Planet from './Components/Planet';
 import Read from './Components/Read';
+import MockApi_test from './Components/MockApi_test';
 
 
 
@@ -38,8 +39,9 @@ function App() {
     <div className="App">
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Mock />} />
-        <Route path="/read" element={<Read />} />
+        {/* <Route path="/" element={<Mock />} />
+        <Route path="/read" element={<Read />} /> */}
+        <Route path="/" element={<MockApi_test />} />
         {/* <Route path="/delete" element={<Delete />} /> */}
         {/* <Route path="/w" element={<Statework />} />
         <Route path="/state" element={<Statework />} />

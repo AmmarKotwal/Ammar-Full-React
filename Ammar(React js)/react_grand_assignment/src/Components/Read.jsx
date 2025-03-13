@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Read() {
     let url="https://67bd6cf4321b883e790c62e0.mockapi.io/crud/emp_data";
@@ -18,6 +18,9 @@ export default function Read() {
     let [dep, setDep] = useState('');
     let [gen, setGen] = useState('');
     let [id, setId] = useState('');
+
+    let loc = useLocation()
+    let uname = loc.state?.na;
 
 
 
@@ -116,6 +119,7 @@ export default function Read() {
 
   return (
     <div>
+        <h1>Welcome {uname}</h1>
         <br />
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

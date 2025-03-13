@@ -111,7 +111,7 @@ export default function Mock() {
                 </div>
                 <div className='d-flex justify-content-between'>
                     <button className="btn btn-primary w-50 me-2 fw-bold" onClick={dataIn}>Submit</button>
-                    <Link to="/read" className="btn btn-primary w-50 fw-bold">View Record</Link>
+                    <Link to="/" className="btn btn-primary w-50 fw-bold">Already Have an Account?</Link>
                 </div>
             </div>
             {trigger && <div className='alert alert-success mt-4 text-center'>{msg}</div>}

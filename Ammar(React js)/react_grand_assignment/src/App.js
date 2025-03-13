@@ -30,6 +30,9 @@ import Feedback from './Components/Feedback';
 import Planet from './Components/Planet';
 import Read from './Components/Read';
 import MockApi_test from './Components/MockApi_test';
+import Login from './Components/Login';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -39,9 +42,10 @@ function App() {
     <div className="App">
       <Navbar/>
       <Routes>
-        {/* <Route path="/" element={<Mock />} />
-        <Route path="/read" element={<Read />} /> */}
-        <Route path="/" element={<MockApi_test />} />
+        <Route path="/m" element={<Mock />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/read" element={<Read />} />
+        {/* <Route path="/mt" element={<MockApi_test />} /> */}
         {/* <Route path="/delete" element={<Delete />} /> */}
         {/* <Route path="/w" element={<Statework />} />
         <Route path="/state" element={<Statework />} />

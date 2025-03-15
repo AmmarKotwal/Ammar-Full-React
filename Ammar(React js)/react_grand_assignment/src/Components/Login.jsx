@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
     let [uname, setUname] = useState("");
     let [upass, setUPass] = useState("");
+
+    
+
 
     let nav = useNavigate()
     const url = "https://67bd6cf4321b883e790c62e0.mockapi.io/crud/emp_data"
@@ -18,7 +21,7 @@ export default function Login() {
         if (
             find_record
         ) {
-            nav("/read", {state: {na: find_record}})
+            nav("/read", {state: {na: find_record.name,dep:find_record.department}})
         } else {
             setUname("");
             setUPass("");
@@ -33,13 +36,12 @@ export default function Login() {
             <div className='card p-4 shadow-lg' style={{backgroundColor: '#B0C4DE'}}>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Username Or Email</label>
-                    <input type="text" className="form-control" value={uname} onChange={(e) => setName(e.target.value)} />
-                    {errors.name && <p className="text-danger small">{errors.name}</p>}
+                    <input type="text" className="form-control" value={uname} onChange={(e) => setUname(e.target.value)} />
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fw-bold">Password</label>
-                    <input type="password" className="form-control" value={password} onChange={(e) => setEmail(e.target.value)} />
-                    {errors.email && <p className="text-danger small">{errors.email}</p>}
+                    <input type="password" className="form-control" value={upass} onChange={(e) => setUPass(e.target.value)} />
+
                 </div>
                 <div className='d-flex justify-content-between'>
                     <button className="btn btn-primary w-50 me-2 fw-bold" onClick={login}>Login</button>

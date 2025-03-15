@@ -21,6 +21,7 @@ export default function Read() {
 
     let loc = useLocation()
     let uname = loc.state?.na;
+    let r = loc.state?.dep;
 
 
 
@@ -119,15 +120,16 @@ export default function Read() {
 
   return (
     <div>
-        <h1>Welcome {uname}</h1>
-        <br />
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<Link class="btn btn-primary me-md-2" type="button" to="/">Add Record</Link>
-</div>
+        <h1>Welcome {uname} <br /> {r}</h1>
+        <br />   
 
 <br />
 <h1>Employee's Data</h1>
+{ r === "admin" &&
+    (<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <Link class="btn btn-primary me-md-2" type="button" to="/">Add Record</Link>
+    </div>)
+}
 
 <div className="container">
     <input type="text" className="form-control my-3" placeholder="Search" value={filterdata} onChange={(a)=>setfilterdata(a.target.value)}/>
@@ -155,12 +157,25 @@ export default function Read() {
 <h3 className="card-title">{a.name}</h3>
 <h6 className="card-subtitle mb-2 text-muted">{a.email}</h6>
 <p className="card-text">{a.salary}</p>
-<button onClick={()=>data_call(a.name,a.email,a.salary,a.password,a.designation,a.department,a.gender,a.id)} type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+{
+    r === "Manager" && (
+        <Link to="" className="card-link">
+<button className='btn btn-outline-danger' type="submit" onClick={() => deleteItem(a.id, a.name)}>Delete</button>
+</Link>
+    )
+}
+{
+    r === "admin" && (
+        <div>
+            <button onClick={()=>data_call(a.name,a.email,a.salary,a.password,a.designation,a.department,a.gender,a.id)} type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Update
 </button>&nbsp;&nbsp;&nbsp;
 <Link to="" className="card-link">
 <button className='btn btn-outline-danger' type="submit" onClick={() => deleteItem(a.id, a.name)}>Delete</button>
 </Link>
+        </div>
+    )
+}
 </div>
 </div>
     
